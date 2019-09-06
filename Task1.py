@@ -41,9 +41,11 @@ def task1():
 
 # count the number of entries.
 
-#    print('There are ' + str(len(total_entry)) + ' different telephone numbers in the records.')
+    #print('There are ' + str(len(total_entry)) + ' different telephone numbers in the records.')
 
     return total_entry, column_search
 
 
-task1()
+total_entry,column = task1()
+print('There are ' + str(len(total_entry)) + ' different telephone numbers in the records.')
+

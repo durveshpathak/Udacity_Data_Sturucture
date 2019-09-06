@@ -44,7 +44,7 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 list_of_Num = []
-#print(len(calls))
+
 #part A find all areacode and mobile prefixes called from bangalore
 
 
@@ -58,12 +58,9 @@ def findACandMN(unique_list):  # O(5n)
 
     list_ac_mn = []
     for number in unique_list:  # O(n)
-        #print(number[0:3])
         if '(0' in number:
-            #print(number)
             i = 0
             while number[i] != ')':  # at worst this loop will run 5 times
-                #print(i)
                 i += 1
             list_ac_mn.append(number[0:i+1])
         if number[0] == '9' or number[0] == '7' or number[0] == '8':
@@ -74,12 +71,9 @@ def findACandMN(unique_list):  # O(5n)
 
 def createlistofnumbers(calls):
     for num in range(len(calls)):
-        #print(num)
         if '(080)' in calls[num][0]:
             list_of_Num.append(calls[num][1])
-            #print(list_of_Num)
     unique_list = remove_duplicates(list_of_Num)
-    #print(unique_list)
     list_final = findACandMN(unique_list)
     return unique_list, list_final
 
@@ -94,13 +88,11 @@ def print_final(list_final):
         print(i)
 
 def PartB(unique_list):
-    i = 0
+    i = 0.0
     total_calls = len(unique_list)
-    #print(total_calls)
     for number in unique_list:
         if '(080)' in number:
             i += 1
-    #print(i)
     percentage = (i/total_calls)*100
     print("%.2f" % percentage + " percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore. ")
 

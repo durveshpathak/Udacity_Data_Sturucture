@@ -30,12 +30,9 @@ The list of numbers should be print out one per line in lexicographic order with
 def teleMark_nums(calls):
     listnum = []
     for row in calls:
-        #print(row[0])
         number = row[0]
         if '140' in number[0:3]:
-            #print(row[0])
             listnum.append(row[0])
-    #print(len(listnum))
     return listnum
 print("These numbers could be telemarketers: ")
 
