@@ -1,0 +1,22 @@
+Time Complexity analysis:
+
+Task 0:
+
+Time Complexity is constant O(1)
+
+Task 1:
+
+Time Complexity is Quadratic O(n^2)
+
+Task 2:
+
+Time Complexity is Quadratic O(n^2)
+
+Task 3:
+
+Time Complexity is Linear for all the task O(n), the while in findACandMN() will run for at most 5 times so the so the
+complexity would be O(5n) ~ O(n)
+
+Task 4:
+
+Time Complexity is Linear O(n)
