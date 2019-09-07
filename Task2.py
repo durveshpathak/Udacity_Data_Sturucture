@@ -33,34 +33,7 @@ callDuration = 0
 # Create a map of Unique numbers initialize the value to 0 this is placeholder to add time spent on call
 map_numbers = dict.fromkeys(ListOfUniqueNo, callDuration)
 
-
-#print(map_numbers)
-
 # Update the existing Key value with the sum of prev value + next value
-
-#def task2(ListOfUniqueNo,column_search):
-#    for j in range(column_search): # This Loop Will Run Twice
-#        for i in range(len(calls)):
-#            for number in ListOfUniqueNo:
-#                if number == calls[i][j]:
-#                    val = int(calls[i][3])
-#                #print(val)
-#                    if number in map_numbers.keys():
-#                        x = map_numbers[number]
-#                        x = x + val
-#                    #print(x)
-#                        map_numbers.update({number: x})
-#
-## iterate the map of those numbers and store the max time duration and respective Ph number
-#    phNumber = list(map_numbers.keys())
-#    time_spent = list(map_numbers.values())
-#
-#    print(str(phNumber[time_spent.index(max(time_spent))]) + ' spent the longest time, '+ str(max(time_spent)) + ' seconds, on the phone during September 2016.')
-#
-#
-#    return 0
-## O(n^3) Unoptimized
-
 
 
 def task2_Opt(ListOfUniqueNo,column_search): # O(n^2)
@@ -76,7 +49,5 @@ def task2_Opt(ListOfUniqueNo,column_search): # O(n^2)
     #print(map_numbers)
     print(str(phNumber[time_spent.index(max(time_spent))]) + ' spent the longest time, ' + str(
             max(time_spent)) + ' seconds, on the phone during September 2016.')
-
-task2(ListOfUniqueNo,column_search)
 
 task2_Opt(ListOfUniqueNo,column_search)

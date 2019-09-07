@@ -39,10 +39,6 @@ def task1():
 
     total_entry = list(dict.fromkeys(total_entry))
 
-# count the number of entries.
-
-    #print('There are ' + str(len(total_entry)) + ' different telephone numbers in the records.')
-
     return total_entry, column_search
 
 
