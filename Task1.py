@@ -22,7 +22,6 @@ Print a message:
 
 
 def task1():
-
     total_entry = []
     column_search = 2
 # Steps:

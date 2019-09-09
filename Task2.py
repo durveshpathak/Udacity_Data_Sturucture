@@ -35,8 +35,7 @@ map_numbers = dict.fromkeys(ListOfUniqueNo, callDuration)
 
 # Update the existing Key value with the sum of prev value + next value
 
-
-def task2_Opt(ListOfUniqueNo,column_search): # O(n^2)
+def task2_Opt(ListOfUniqueNo,column_search): # O(2n)
     for i in range(column_search):
         for row in calls:
             if row[i] in map_numbers.keys():

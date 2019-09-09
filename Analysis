@@ -2,15 +2,17 @@ Time Complexity analysis:
 
 Task 0:
 
+Only printing records of call these are constant time operations
 Time Complexity is constant O(1)
 
 Task 1:
 
-Time Complexity is Quadratic O(n^2)
+since we will search only first two column for number the complexity for searching numbers in both the files will be
+Time Complexity is Linear O(2n+2n) ~ O(n)
 
 Task 2:
-
-Time Complexity is Quadratic O(n^2)
+since we will search only first two column for number 
+Time Complexity is Linear O(2n + constants) ~ O(n)
 
 Task 3:
 
@@ -18,5 +20,5 @@ Time Complexity is Linear for all the task O(n), the while in findACandMN() will
 complexity would be O(5n) ~ O(n)
 
 Task 4:
-
-Time Complexity is Linear O(n)
+n rows in calls.csv; m rows in text.csv; q list of unique numbers
+Time Complexity is Quadratic O(qn)+O(2qm)**worst case if all the numbers are unique O(n^2)

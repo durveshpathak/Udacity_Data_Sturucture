@@ -3,7 +3,7 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 import csv
-#import Task3
+
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -37,31 +37,22 @@ def return_list_of_number():
 def check_lists(listnum):
     for num in listnum:
         for row in calls:
-            #print(row)
             if row[1] in listnum:
-                #print('Found')
                 listnum.remove(row[1])
-                #print('not found')
     for num in listnum:
         for row in texts:
             if row[0] in listnum:
-                #print('Found')
                 listnum.remove(row[0])
-                #print('not found')
     for num in listnum:
         for row in texts:
             if row[1] in listnum:
-                #print('Found')
                 listnum.remove(row[1])
-                #print('not found')
 
     return listnum
 
 def teleMark_nums(calls):
     uniqueNo = return_list_of_number()
-    #print(len(uniqueNo))
     listnum = check_lists(uniqueNo)
-    #print(len(listnum))
     return listnum
 
 def print_main():

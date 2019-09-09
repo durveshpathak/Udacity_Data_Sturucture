@@ -84,6 +84,7 @@ unique_list, list_final = createlistofnumbers(calls)
 
 # Part B
 def print_final(list_final):
+    print("The numbers called by people in Bangalore have codes:")
     for i in list_final:
         print(i)
 
