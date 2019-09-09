@@ -3,7 +3,7 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 import csv
-import Task3
+#import Task3
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -26,14 +26,50 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
-
-def teleMark_nums(calls):
+def return_list_of_number():
     listnum = []
     for row in calls:
-        number = row[0]
-        if '140' in number[0:3]:
-            listnum.append(row[0])
-    return listnum
-print("These numbers could be telemarketers: ")
+        listnum.append(row[0])
 
-Task3.print_final(teleMark_nums(calls))
+    listnum = list(dict.fromkeys(listnum))
+    return listnum
+
+def check_lists(listnum):
+    for num in listnum:
+        for row in calls:
+            #print(row)
+            if row[1] in listnum:
+                #print('Found')
+                listnum.remove(row[1])
+                #print('not found')
+    for num in listnum:
+        for row in texts:
+            if row[0] in listnum:
+                #print('Found')
+                listnum.remove(row[0])
+                #print('not found')
+    for num in listnum:
+        for row in texts:
+            if row[1] in listnum:
+                #print('Found')
+                listnum.remove(row[1])
+                #print('not found')
+
+    return listnum
+
+def teleMark_nums(calls):
+    uniqueNo = return_list_of_number()
+    #print(len(uniqueNo))
+    listnum = check_lists(uniqueNo)
+    #print(len(listnum))
+    return listnum
+
+def print_main():
+    listFinal = teleMark_nums(calls)
+    listFinal.sort()
+    print("These numbers could be telemarketers: ")
+    for i in listFinal:
+        print(i)
+    return 0
+print_main()
+
