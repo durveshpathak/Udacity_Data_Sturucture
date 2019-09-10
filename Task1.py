@@ -14,7 +14,7 @@ with open('calls.csv', 'r') as f:
 
 
 """
-TASK 1: O(2n^2 +1)
+TASK 1: 
 How many different telephone numbers are there in the records? 
 Print a message:
 "There are <count> different telephone numbers in the records."
