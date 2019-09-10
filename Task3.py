@@ -50,7 +50,7 @@ list_of_Num = []
 
 def remove_duplicates(list_of_num):
 
-    list_of_num = list(dict.fromkeys(list_of_num))
+    list_of_num = set(list_of_num)
     return list_of_num
 
 
@@ -81,22 +81,24 @@ def createlistofnumbers(calls):
 
 
 unique_list, list_final = createlistofnumbers(calls)
-
 # Part B
 def print_final(list_final):
     print("The numbers called by people in Bangalore have codes:")
     for i in list_final:
         print(i)
 
-def PartB(unique_list):
+def PartB():
     i = 0.0
-    total_calls = len(unique_list)
-    for number in unique_list:
-        if '(080)' in number:
+    j = 0.0
+    for row in calls:
+        if '(080)' in row[0]:
+            j+=1
+    for row in calls:
+        if ('(080)' in row[0]) and ('(080)' in row[1]):
             i += 1
-    percentage = (i/total_calls)*100
+    percentage = (i/j)*100
     print("%.2f" % percentage + " percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore. ")
 
 
 print_final(list_final)
-PartB(unique_list)
+PartB()

@@ -22,4 +22,4 @@ Print messages:
 """
 
 print('First record of texts, ' + texts[0][0] + ' texts ' + texts[0][1] + ' at time ' + texts[0][2]) # O(1)
-print('Last record of calls, ' + calls[-1][0] + ' calls ' + calls[-1][1] + ' at time ' + calls[-1][2] + ' lasting ' + calls[-1][3]) # O(1)
+print('Last record of calls, ' + calls[-1][0] + ' calls ' + calls[-1][1] + ' at time ' + calls[-1][2] + ' lasting ' + calls[-1][3] + ' seconds') # O(1)

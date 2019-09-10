@@ -36,7 +36,7 @@ def task1():
 
 # Remove duplicates from the list.
 
-    total_entry = list(dict.fromkeys(total_entry))
+    total_entry = set(total_entry)
 
     return total_entry, column_search
 
