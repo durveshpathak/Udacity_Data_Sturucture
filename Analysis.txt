@@ -1,0 +1,271 @@
+Time Complexity analysis:
+
+************************************************Task 0:******************************************************
+
+import csv
+
+with open('texts.csv', 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+
+with open('calls.csv', 'r') as f:
+    reader = csv.reader(f)
+    calls = list(reader)
+
+print(calls[0]) ***** Time complexity for this method is O(1) *****
+print('First record of texts, ' + texts[0][0] + ' texts ' + texts[0][1] + ' at time ' + texts[0][2])
+***** Time complexity for this method is O(n) *****
+print('Last record of calls, ' + calls[-1][0] + ' calls ' + calls[-1][1] + ' at time ' + calls[-1][2] + ' lasting ' + calls[-1][3]) # O(1)
+***** Time complexity for this method is O(n) *****
+Ignoring the code to load the files and adding all the time complexities for Total time complexity
+all the print method will lookup the indexed values and print them printing records of call these are constant time operations
+
+******************************************************
+Time Complexity is constant O(1) + O(1) + O(1) ~ O(1)*
+******************************************************
+_____________________________________________________________________________________________________________
+
+
+************************************************Task 1:******************************************************
+
+import csv
+
+with open('texts.csv', 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+
+with open('calls.csv', 'r') as f:
+    reader = csv.reader(f)
+    calls = list(reader)
+
+def task1():
+
+    total_entry = [] ***** Time complexity for this method is O(1) *****
+    column_search = 2 ***** Time complexity for this method is O(1) *****
+# Steps:
+# create a list of all found entries in column 1 & 2 of texts and lists. O(2n)
+    for i in range(column_search): ***** This statement runs only two times does not depend on input O(2) *****
+        for j in range(len(texts)): ***** This statement runs O(2n) times, depends on the length of the input *****
+            total_entry.append(texts[j][i]) ***** Time complexity for this statement is O(2n) *****
+
+    for i in range(column_search): ***** This statement runs only two times does not depend on input O(2) *****
+        for j in range(len(calls)): ***** This statement runs O(2n) times, depends on the length of the input *****
+            total_entry.append(calls[j][i]) ***** Time complexity for this statement is O(2n) *****
+
+# Remove duplicates from the list.
+
+    total_entry = list(dict.fromkeys(total_entry)) ***** Time Complexity for This is O(n) *****
+
+# count the number of entries.
+
+    print('There are ' + str(len(total_entry)) + ' different telephone numbers in the records.') ***** Time Complexity for This is O(1) *****
+
+    return total_entry, column_search
+
+since we will search only first two column for number the complexity for searching numbers in both the files will be
+
+*******************************************************************************************************************
+Time Complexity is Linear O(1) + O(1) + O(2n) + O(2) + O(2n) + O(2n) + O(2) + O(2n) + O(2n) + O(n) + O(1) ~ O(n)*
+*******************************************************************************************************************
+_____________________________________________________________________________________________________________
+
+************************************************Task 2:******************************************************
+
+import csv
+import Task1
+
+
+with open('texts.csv', 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+
+with open('calls.csv', 'r') as f:
+    reader = csv.reader(f)
+    calls = list(reader)
+
+# Steps:
+
+# Get the list of unique numbers from task 1
+
+ListOfUniqueNo, column_search = Task1.task1() ***** Time complexity for this method is O(n) *****
+callDuration = 0 ***** Time complexity for this method O(1) *****
+
+# Create a map of Unique numbers initialize the value to 0 this is placeholder to add time spent on call
+
+map_numbers = dict.fromkeys(ListOfUniqueNo, callDuration) ***** Time complexity for this method is O(n) *****
+
+# Update the existing Key value with the sum of prev value + next value
+
+def task2_Opt(ListOfUniqueNo,column_search): # O(2n) + O(2x4n)
+    for i in range(column_search): ***** This statement runs only two times does not depend on input O(2) *****
+        for row in calls: ***** This statement runs n times, depends on the length of the input O(2n)  *****
+            if row[i] in map_numbers.keys(): ***** Time complexity for this statement is O(2n) *****
+                x = map_numbers[row[i]] ***** Time complexity for this statement is O(2n) *****
+                x = x + int(row[3]) ***** Time complexity for this statement is O(2n) *****
+                map_numbers.update({row[i]: x}) ***** Time complexity for this statement is O(2n) *****
+
+        # iterate the map of those numbers and store the max time duration and respective Ph number
+    phNumber = list(map_numbers.keys()) ***** Time complexity for this method is O(n) *****
+    time_spent = list(map_numbers.values()) ***** Time complexity for this method is O(n) *****
+    #print(map_numbers)
+    print(str(phNumber[time_spent.index(max(time_spent))]) + ' spent the longest time, ' + str(
+            max(time_spent)) + ' seconds, on the phone during September 2016.')  ***** Time complexity for this statement is O(1) *****
+
+
+task2_Opt(ListOfUniqueNo,column_search)
+since we will search only first two column for number
+**************************************************************************************************************************
+Time Complexity is Linear O(n) + O(1) + O(n) + O(2) + O(2n) + O(2n) + O(2n) + O(2n) + O(2n) + O(n) + O(n) + O(1) ~ O(n)*
+**************************************************************************************************************************
+___________________________________________________________________________________________________________________
+************************************************Task 3:******************************************************
+
+import csv
+
+with open('texts.csv', 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+
+with open('calls.csv', 'r') as f:
+    reader = csv.reader(f)
+    calls = list(reader)
+
+list_of_Num = []  ***** Time complexity for this method is O(1) *****
+
+#part A find all areacode and mobile prefixes called from bangalore
+
+def remove_duplicates(list_of_num): ***** Time complexity for this method is O(n) *****
+
+    list_of_num = list(dict.fromkeys(list_of_num))
+    return list_of_num
+
+
+def findACandMN(unique_list):  ***** Time complexity for this method is O(5n) as the while loop within the for loop will run for 5 time for worst case *****
+
+    list_ac_mn = []
+    for number in unique_list:  ***** Time complexity for this method is O(n) *****
+        #print(number[0:3])
+        if '(0' in number:  ***** Time complexity for this method is O(n) *****
+            #print(number)
+            i = 0  ***** Time complexity for this method is O(n) *****
+            while number[i] != ')': ***** Time complexity for this method is O(5n) ***** # at worst this loop will run 5 times
+                #print(i)
+                i += 1
+            list_ac_mn.append(number[0:i+1]) ***** Time complexity for this method is O(n) *****
+        if number[0] == '9' or number[0] == '7' or number[0] == '8': ***** Time complexity for this method is O(n) *****
+            list_ac_mn.append(number[0:4]) ***** Time complexity for this method is O(n) *****
+    list_ac_mn = sorted(list(dict.fromkeys(list_ac_mn))) ***** Time complexity for this method is O(n) *****
+    return list_ac_mn
+
+
+def createlistofnumbers(calls): ***** O(n) + o(n) + O(n) +O(m) +O(5p) Worst case n==m==p all unique entries O(n)
+    for num in range(len(calls)): ***** Time complexity for this method is O(n) *****
+        #print(num)
+        if '(080)' in calls[num][0]: ***** Time complexity for this method is O(n) *****
+            list_of_Num.append(calls[num][1]) ***** Time complexity for this method is O(n) *****
+            #print(list_of_Num)
+    unique_list = remove_duplicates(list_of_Num) ***** Time complexity for this method is O(m) *****
+    #print(unique_list)
+    list_final = findACandMN(unique_list) ***** Time complexity for this method is O(5p) This depends on Uniques entries of number *****
+    return unique_list, list_final
+
+
+
+
+unique_list, list_final = createlistofnumbers(calls)
+
+# Part B
+def print_final(list_final): ***** Time complexity for this method is O(p) worst case all nurmber are unique O(n) *****
+    print("The numbers called by people in Bangalore have codes:")
+    for i in list_final:
+        print(i)
+
+def PartB(): ***** Time complexity for this method is O(n) *****
+    i = 0.0 ***** Time complexity for this method is O(1) *****
+    j = 0.0 ***** Time complexity for this method is O(1) *****
+    for row in calls: 
+        if '(080)' in row[0]: ***** Time complexity for this method is O(n) *****
+            j+=1 ***** Time complexity for this method is O(n) *****
+    for row in calls: 
+        if ('(080)' in row[0]) and ('(080)' in row[1]): ***** Time complexity for this method is O(n) *****
+            i += 1 ***** Time complexity for this method is O(n) *****
+    percentage = (i/j)*100 ***** Time complexity for this method is O(1) *****
+    print("%.2f" % percentage + " percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore. ") ***** Time complexity for this method is O(1) *****
+
+
+print_final(list_final)
+PartB(unique_list)
+
+******************************************************************
+Part A Time Complexity is Linear O(n) for worst case if n==m==p  *
+Part B Time Complexity is Linear O(n)		                 *
+******************************************************************
+________________________________________________________________________________________________________________
+************************************************Task 4:******************************************************
+"""
+Read file into texts and calls.
+It's ok if you don't understand how to read files.
+"""
+import csv
+#import Task3
+
+with open('texts.csv', 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+
+with open('calls.csv', 'r') as f:
+    reader = csv.reader(f)
+    calls = list(reader)
+
+
+def return_list_of_number(): ***** Time complexity for this method is O(1) + O(n) + O(n) +O(n) ~ O(n) *****
+    listnum = [] ***** Time complexity for this method is O(1) *****
+    for row in calls: ***** Time complexity for this method is O(n) *****
+        listnum.append(row[0]) ***** Time complexity for this method is O(n) *****
+
+    listnum = list(dict.fromkeys(listnum)) ***** Time complexity for this method is O(n) *****
+    return listnum
+
+def check_lists(listnum): ***** Time Complexity is O(mn) + O(mp) Worst if all the numbers are unique O(n^2)
+    for num in listnum: ***** Time complexity for this method is O(m) *****
+        for row in calls: ***** Time complexity for this method is O(nm) *****
+            #print(row)
+            if row[1] in listnum: ***** Time complexity for this method is O(mn) *****
+                #print('Found')
+                listnum.remove(row[1]) ***** Time complexity for this method is O(mn) *****
+                #print('not found')
+    for num in listnum: ***** Time complexity for this method is O(m) *****
+        for row in texts: ***** Time complexity for this method is O(mp) *****
+            if row[0] in listnum: ***** Time complexity for this method is O(mp) *****
+                #print('Found')
+                listnum.remove(row[0]) ***** Time complexity for this method is O(mp) *****
+                #print('not found')
+    for num in listnum: ***** Time complexity for this method is O(m) *****
+        for row in texts: ***** Time complexity for this method is O(mp) *****
+            if row[1] in listnum: ***** Time complexity for this method is O(mp) *****
+                #print('Found')
+                listnum.remove(row[1]) ***** Time complexity for this method is O(mp) *****
+                #print('not found')
+
+    return listnum
+
+def teleMark_nums(calls): ***** Time complexity for this method is O(n) + O(n^2) ~ O(n^2) *****
+    uniqueNo = return_list_of_number() ***** Time complexity for this method is O(n) *****
+    #print(len(uniqueNo))
+    listnum = check_lists(uniqueNo) ***** Time complexity for this method is O(n^2) Worstcase *****
+    #print(len(listnum))
+    return listnum
+
+def print_main():
+    listFinal = teleMark_nums(calls) ***** Time complexity for this method is O(n^2) *****
+    listFinal.sort() ***** Time complexity for this method is O(m) *****
+    print("These numbers could be telemarketers: ") ***** Time complexity for this method is O(1) *****
+    for i in listFinal: ***** Time complexity for this method is O(n) worst case if all the numbers are unique *****
+        print(i) ***** Time complexity for this method is O(n) *****
+    return 0
+print_main()
+
+n rows in calls.csv; p rows in text.csv; m list of unique numbers
+****************************************************************
+Time Complexity is Quadratic O(n^2) for worst case if n==m==p  *
+****************************************************************
